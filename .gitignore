@@ -1,0 +1,11 @@
+# macOS system files
+# 避免垃圾文件
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
