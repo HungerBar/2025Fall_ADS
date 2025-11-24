@@ -1,0 +1,34 @@
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{zjuEnreport}
+\usepackage{booktabs}
+
+\renewcommand{\figurename}{Figure}
+
+% 自定义表格前缀（如将“表”改为“Table”）
+\renewcommand{\tablename}{Table}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\refname}{Reference}
+%%-------------------------------正文开始---------------------------%%
+\begin{document}
+
+%%-----------------------封面--------------------%%
+\cover
+\thispagestyle{empty}
+%%------------------摘要-------------%%
+\newpage
+\begin{abstract}
+\end{abstract}
+
+%%--------------------------目录页------------------------%%
+\tableofcontents
+
+%%------------------------正文页从这里开始-------------------%
+\newpage
+
+%%可选择这里也放一个标题
+\begin{center}
+    \title{ \Huge \textbf{{}}}
+\end{center}
+
+
+\end{document}
