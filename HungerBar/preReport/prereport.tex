@@ -16,8 +16,8 @@
 \thispagestyle{empty}
 %%------------------摘要-------------%%
 \newpage
-\begin{abstract}
-\end{abstract}
+%\begin{abstract}
+%\end{abstract}
 
 %%--------------------------目录页------------------------%%
 \tableofcontents
@@ -29,6 +29,133 @@
 \begin{center}
     \title{ \Huge \textbf{{}}}
 \end{center}
+
+\section{项目描述 (Project Description)}
+本项目旨在解决 \textbf{3-Partition Problem}（三路划分问题）。给定一个包含 $N$ 个正整数的多重集合 $S = \{a_1, a_2, \dots, a_N\}$，我们需要判断是否可以将 $S$ 划分为三个互不相交的子集 $S_1, S_2, S_3$，使得这三个子集的元素之和相等。
+
+形式化地，令总和 $Sum = \sum_{i=1}^N a_i$。我们需要找到划分满足：
+\begin{equation}
+    \sum_{x \in S_1} x = \sum_{y \in S_2} y = \sum_{z \in S_3} z = \text{Target}
+\end{equation}
+其中 $\text{Target} = Sum / 3$。如果 $Sum$ 不能被 3 整除，则直接判定为无解。如果存在这样的划分，算法需要输出具体的子集划分方案；否则输出 ``no''。
+
+\section{算法描述 (Description of Algorithms)}
+针对该问题，我们设计并实现了三种算法：基于剪枝的深度优先搜索 (DFS)、伪多项式时间的动态规划 (DP) 以及启发式的模拟退火 (Simulated Annealing)。
+
+\subsection{算法一：带剪枝的深度优先搜索 (DFS)}
+DFS 是一种精确算法，通过递归地构建搜索树来遍历所有可能的状态。算法的核心是一个递归函数 \texttt{DFS(index, bucket\_sums)}，其中 \texttt{index} 表示当前正在处理的数字下标，\texttt{bucket\_sums} 维护当前三个桶的累加和。为了应对最坏情况下 $O(3^N)$ 的指数级搜索空间，我们使用了两项剪枝策略：
+
+\begin{enumerate}
+    \item \textbf{降序排序 (Sort Descending)}: 
+    在搜索开始前，我们将输入数组 $S$ 按从大到小的顺序排序。
+    \begin{itemize}
+        \item \textit{原理}: 优先处理数值较大的元素可以更快地减少剩余桶的可用容量。较大的元素灵活性较差（更难放入剩余空间小的桶），因此能更早地触发容量溢出条件，从而实现“快速失败 (Fail-Fast)”，显著减少无效递归的深度。
+    \end{itemize}
+    
+    \item \textbf{等效性剪枝 (Symmetry Breaking)}: 
+    这是本算法的核心优化，用于消除搜索树中的同构子树。
+    \begin{itemize}
+        \item \textit{原理}: 初始时，三个空桶在数学上是完全等价的（即划分 $\{A, B, C\}$ 和 $\{B, A, C\}$ 是同一种解）。如果当前数字 $a_{index}$ 尝试放入第一个空桶后导致后续搜索失败，那么尝试将其放入第二个或第三个空桶也必然会得到相同的结果。
+        \item \textit{实现}: 在递归过程中，如果当前桶是空的（Sum=0），且将当前数字放入该桶导致了回溯（即该分支无解），我们强制停止尝试后续所有的空桶。这有效地定义了桶的“填入顺序”，将搜索空间减少了约 $3!$ 倍。
+    \end{itemize}
+\end{enumerate}
+
+\subsection{算法二：动态规划 (DP)}
+我们将该问题建模为多维 0/1 背包问题的变种。由于我们需要将数字精确地分配到三个桶中，我们只需追踪前两个桶的状态，第三个桶的状态由总和守恒定律隐含确定。
+
+\begin{itemize}
+    \item \textbf{状态定义}: 
+    令 $dp[i][j]$ 为布尔值，表示是否可以从前 $k$ 个物品中选出部分物品填满桶 1 至容量 $i$，同时填满桶 2 至容量 $j$。如果 $dp[i][j]$ 为真，且 $TotalSum\_k - i - j \le Target$，则状态合法。
+    
+    \item \textbf{状态转移方程}: 
+    对于第 $k$ 个物品（重量为 $v$），我们遍历所有可能的 $(i, j)$ 状态。新的状态 $dp_{new}$ 可以由上一轮状态 $dp_{old}$ 转移而来：
+    \begin{equation}
+        dp[i][j] = \underbrace{dp[i][j]}_{\text{放入桶3}} \lor \underbrace{dp[i-v][j]}_{\text{放入桶1}} \lor \underbrace{dp[i][j-v]}_{\text{放入桶2}}
+    \end{equation}
+    边界条件为 $dp[0][0] = \text{True}$。
+    
+    \item \textbf{路径记录与回溯}: 
+    为了输出具体方案，我们维护一个三维数组 $path[k][i][j] \in \{1, 2, 3\}$。
+    \begin{itemize}
+        \item 当我们将第 $k$ 个物品放入桶 1 并更新状态 $(i, j)$ 时，记录 $path[k][i][j] = 1$。
+        \item 算法结束后，若 $dp[Target][Target]$ 为真，我们从 $(N, Target, Target)$ 开始逆向回溯，根据 $path$ 数组还原每个物品的归属。
+    \end{itemize}
+\end{itemize}
+
+\subsection{算法三：模拟退火 (Simulated Annealing)}
+为了解决大规模输入（$N=1000$）或 Bonus 部分的高维划分问题（Exact Algorithms 会因时间或内存耗尽而失效），我们实现了模拟退火这一基于概率的启发式算法。
+
+\begin{enumerate}
+    \item \textbf{初始化 (Initialization)}: 
+    随机将 $N$ 个数分配到 3 个桶中，作为初始解 $S_0$。
+    
+    \item \textbf{能量函数 (Cost Function)}: 
+    我们定义系统的“能量”为当前状态的不平衡度。目标是寻找全局最小能量 $E=0$。
+    \begin{equation}
+        E(S) = \sum_{m=1}^{3} |Sum_m - \text{Target}|
+    \end{equation}
+    
+    \item \textbf{邻域操作 (Neighbor Generation)}: 
+    在每次迭代中，我们通过微扰当前状态产生新状态 $S'$。采用了两种策略：
+    \begin{itemize}
+        \item \textit{Move}: 随机选择一个数字，将其从当前桶移动到另一个随机桶。
+        \item \textit{Swap}: 随机选择两个分别位于不同桶的数字，交换它们的位置。
+    \end{itemize}
+    
+    \item \textbf{Metropolis 准则}: 
+    令 $\Delta E = E(S') - E(S)$。
+    \begin{itemize}
+        \item 若 $\Delta E < 0$（新状态更优），则无条件接受新状态。
+        \item 若 $\Delta E \ge 0$（新状态更差），则以概率 $P = \exp(-\Delta E / T)$ 接受新状态。其中 $T$ 为当前温度。这一机制允许算法在早期“爬山”，跳出局部最优解。
+    \end{itemize}
+    
+    \item \textbf{卡时重启 (Time-Limited Restart)}:
+    由于 SA 是概率算法，单次运行可能无法收敛。我们引入了重启机制：如果在降温结束时未找到解 ($E > 0$) 且总运行时间未超过 0.9秒，则重置温度和随机种子，从头开始新一轮退火。这在有限时间内最大化了找到解的概率。
+\end{enumerate}
+
+\section{时间复杂度的理论分析 (Theoretical Analysis)}
+
+\subsection{问题复杂性归类}
+\begin{itemize}
+    \item \textbf{3-Partition Problem}是一个 \textbf{强 NP-完全 (Strongly NP-Complete)} 问题。
+    \item 强 NP-完全性意味着即使输入数字的大小（Value）受到多项式的限制，问题依然是 NP-完全的。这也暗示了除非 $P=NP$，否则该问题不存在 \textbf{全多项式时间近似方案 (FPTAS)}。
+    \item \textbf{结论}：不存在以输入数据的位长（Bit Length）为多项式时间的精确算法。
+\end{itemize}
+
+\subsection{算法一：深度优先搜索 (DFS)}
+\begin{itemize}
+    \item \textbf{最坏时间复杂度}: $O(3^N)$
+    \item \textbf{详细分析}: 
+    DFS 算法本质上是在遍历一颗三叉树。对于集合中的 $N$ 个元素，每一个元素都有 3 种可能的去向（桶 1、桶 2 或桶 3）。因此，未经剪枝的搜索空间大小为 $3 \times 3 \times \dots \times 3 = 3^N$。
+    \item \textbf{剪枝的影响}: 
+    虽然我们在实现中加入了\textit{降序排序}和\textit{等效性剪枝}，这在处理随机生成的数据时极大地修剪了搜索树（使得平均分支因子远小于 3），但在最坏情况下（例如精心构造的对抗性数据，或者所有数字都相等且无解时），剪枝可能失效，算法仍需遍历大部分状态空间。因此，其理论上界依然是指数级的。
+\end{itemize}
+
+\subsection{算法二：动态规划 (DP)}
+\begin{itemize}
+    \item \textbf{时间复杂度}: $O(N \cdot \text{Target}^2)$，其中 $\text{Target} = \text{Sum}/3$。
+    \item \textbf{空间复杂度}: $O(N \cdot \text{Target}^2)$。
+    \item \textbf{伪多项式时间 (Pseudo-polynomial Time) }:
+    公式中包含 $N$ 和 $\text{Target}$ 的多项式，似乎是高效的。然而，在计算复杂性理论中，算法的时间复杂度是相对于输入规模（Input Size）而言的，而输入规模是按数据的二进制位长计算的。
+    \begin{itemize}
+        \item 假设输入数字的最大值为 $M$，则输入该数字所需的比特数为 $L = \log_2 M$。
+        \item 算法的运行时间与数值 $M$（即 $\text{Target}$）成正比，即与 $2^L$ 成正比。
+        \item 因此，运行时间相对于输入规模 $L$ 是\textbf{指数级}增长的。
+    \end{itemize}
+    \textbf{结论}：当 $N$ 很大但数值 $M$ 很小（如 $M \le N$）时，DP 是多项式时间的有效解法；但当数值 $M$ 很大（如 $M = 10^{100}$）时，DP 将因内存耗尽或超时而失效。
+\end{itemize}
+
+\subsection{算法三：模拟退火 (Simulated Annealing)}
+\begin{itemize}
+    \item \textbf{时间复杂度}: $O(K_{iter} \cdot T_{update})$
+    \item \textbf{分析}:
+    模拟退火的复杂度不由输入规模 $N$ 直接决定，而是由人为设定的冷却计划决定。
+    \begin{itemize}
+        \item $K_{iter}$: 总迭代次数，大约为 $\log_{\alpha}(\frac{T_{end}}{T_{start}})$。其中 $\alpha$ 是降温系数。
+        \item $T_{update}$: 每次状态转移（移动或交换）并更新能量函数的代价。在优化实现中，我们可以通过增量计算（Incremental Update）在 $O(1)$ 时间内完成能量更新。
+    \end{itemize}
+    因此，总复杂度主要取决于预设的参数。在我们的实现中，为了适应在线评测系统（OJ），我们加入了硬性的时间限制（0.9秒）。这使得算法在工程上表现为 $O(1)$ 的常数时间复杂度（相对于问题规模无限增长而言，它总是能在固定时间内停止），但代价是无法保证解的完备性，且无法证明无解的情况。
+\end{itemize}
 
 
 \section{实验与测试分析}
@@ -213,5 +340,53 @@ $n$ & mean & min & max & var \\
 \end{itemize}
 
 总体而言，不同算法适合不同规模和场景的三分类问题：DFS 更适合小规模精确求解，DP 适合中规模最优求解，SA 可用于大规模近似求解。
+
+\section{Bonus: 推广到 K-Partition}
+我们探讨了当划分份数从 3 份推广到 $K$ 份（$K=4, 5, \dots$）时，即 \textbf{K-Partition Problem}，上述算法的适用性及复杂度变化。
+
+\subsection{深度优先搜索 (DFS): 指数爆炸}
+\begin{itemize}
+    \item \textbf{适用性}: DFS 算法逻辑有通用性，只需将目标桶数从 3 改为 $K$ 即可直接运行。
+    \item \textbf{复杂度分析}: 每个物品现在有 $K$ 种选择。
+    \[ T(N, K) = O(K^N) \]
+    当 $K$ 增大时，搜索树的宽度（分支因子）迅速增加，计算量呈指数级爆炸。
+    \item \textbf{剪枝效果}: 
+    虽然基本复杂度变差，但\textit{等效性剪枝 (Symmetry Breaking)} 的效果会随着 $K$ 的增加而变得更加显著。因为初始时 $K$ 个空桶是完全等价的，这使得搜索空间减少了 $K!$ 倍（同构解的数量）。尽管如此，对于较大的 $N$ 和 $K$，DFS 仍难以在有限时间内求解。
+\end{itemize}
+
+\subsection{动态规划 (DP): 内存限制}
+\begin{itemize}
+    \item \textbf{适用性}: 理论上可行，但实际上因内存限制而不可行。
+    \item \textbf{状态定义变化}: 为了确定前 $K-1$ 个桶的状态（最后一个桶的状态由总和约束隐含），我们需要维护 $K-1$ 个维度：
+    \[ dp[s_1][s_2]\dots[s_{K-1}] \]
+    \item \textbf{复杂度分析}:
+    \[ \text{时间/空间复杂度} = O(N \cdot \text{Target}^{K-1}) \]
+    \item \textbf{实例分析}:
+    假设 $\text{Target}=100$，每个维度大小为 100。
+    \begin{itemize}
+        \item 当 $K=3$ 时，空间为 $100^2 = 10,000$，内存可控。
+        \item 当 $K=4$ 时，空间为 $100^3 = 1,000,000$，尚可接受。
+        \item 当 $K=10$ 时，空间为 $100^9$，这不仅远超计算机内存物理极限，甚至超过了硬盘存储能力。
+    \end{itemize}
+    \textbf{结论}: DP 算法不具备向高维推广的能力。
+\end{itemize}
+
+\subsection{模拟退火 (Simulated Annealing)}
+\begin{itemize}
+    \item \textbf{适用性}: 模拟退火在处理 $K$-Partition 问题时表现出极佳的鲁棒性。只需修改目标函数和桶的个数参数，无需改变算法核心逻辑。
+    \item \textbf{复杂度分析}:
+    \[ T(N, K) \approx O(\text{Iterations} \cdot K) \]
+    其复杂度仅随 $K$ 线性增长（主要消耗在能量函数的计算上，若采用增量更新，甚至可以做到 $O(1)$ 与 $K$ 无关）。
+    \item \textbf{优势}: 它避开了 DFS 的指数级深度和 DP 的指数级空间，是解决大规模 $K$-Partition 问题（如 $K=100, N=10000$）在工程上可行的方法。
+\end{itemize}
+
+
+\section{结论与讨论 (Conclusion)}
+在本项目中，我们深入研究了 3-Partition 问题，并对比了三种不同性质的算法：
+\begin{enumerate}
+    \item \textbf{DFS} 在强力剪枝的辅助下，是解决中小规模（$N \le 60$）及大数值问题的最佳精确解法。
+    \item \textbf{DP} 揭示了该问题的伪多项式性质，适用于 $N$ 较大但数值总和较小的特定场景，但在通用性上受限于内存瓶颈。
+    \item \textbf{模拟退火} 作为启发式算法，展示了在处理大规模输入（$N=1000$）和高维变体（Bonus $K$-Partition）时的强大能力，虽然牺牲了完备性，但换取了极高的工程实用性。
+\end{enumerate}
 
 \end{document}
