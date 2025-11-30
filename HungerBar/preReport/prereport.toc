@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}项目描述 (Project Description)}{3}{section.1}%
+\contentsline {section}{\numberline {2}算法描述 (Description of Algorithms)}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}算法一：带剪枝的深度优先搜索 (DFS)}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}算法二：动态规划 (DP)}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}算法三：模拟退火 (Simulated Annealing)}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}时间复杂度的理论分析 (Theoretical Analysis)}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}问题复杂性归类}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}算法一：深度优先搜索 (DFS)}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}算法二：动态规划 (DP)}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}算法三：模拟退火 (Simulated Annealing)}{5}{subsection.3.4}%
+\contentsline {section}{\numberline {4}实验与测试分析}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}测试数据设计}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}DFS + 剪枝测试结果}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}动态规划（DP）测试结果}{7}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}固定 $n$，增大 $sum$ 的情况}{7}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}固定 $sum$，增大 $n$ 的情况}{8}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}同时增大 $n$ 与 $sum$ 的情况}{9}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}模拟退火（SA）测试结果}{9}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}base construction}{9}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}greedy fill-in}{10}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Comparison}{11}{subsubsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.5}综合分析}{11}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Bonus: 推广到 K-Partition}{11}{section.5}%
+\contentsline {subsection}{\numberline {5.1}深度优先搜索 (DFS): 指数爆炸}{11}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}动态规划 (DP): 内存限制}{11}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}模拟退火 (Simulated Annealing)}{12}{subsection.5.3}%
+\contentsline {section}{\numberline {6}结论与讨论 (Conclusion)}{12}{section.6}%
