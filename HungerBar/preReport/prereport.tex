@@ -342,16 +342,20 @@ $n$ & mean & min & max & var \\
 
 \subsubsection{greedy fill-in}
 
-为了进一步评估模拟退火算法（\texttt{./sa}）的性能与稳定性，我们额外构建了一类 \textbf{保证一定存在可行解} 的测试集。生成脚本通过严格控制总和与元素构造方式，使得每个输入实例都满足三分类问题的可解性条件。
+由于第一种构造思路测试出来的夸张的 \texttt{./sa} 性能, 以及进一步评估模拟退火算法（\texttt{./sa}）的稳定性，我们额外构建了一类 \textbf{保证一定存在可行解} 的测试集。生成脚本通过严格控制总和与元素构造方式，使得每个输入实例都满足三分类问题的可解性条件。
 
 在生成阶段，脚本固定数组长度（本实验中为 \(n = 1000\)），并将所有元素限制在区间 \([1, 10^{6}]\) 内。首先为三个桶分配平衡的目标和，随后逐步生成随机数填充各桶，同时确保不会超出目标和。生成完成后，脚本通过最后一步一致性修正，使得数组总和严格可被桶数整除，从而保证实例一定存在一个 \textbf{完美三分} 方案。
 
 对于每个生成的实例，脚本将数组写入 \texttt{input.txt}，随后最多运行 \(K_{\max} = 10\) 次 \texttt{./sa}，直到其找到正确解为止。每次求解结束后使用 \texttt{./check} 进行正确性验证，并记录首次成功的重启次数。
 
 我们得到如下的结果
-
+\begin{itemize}
+    \item \textbf{Total instances}: 1000
+    \item \textbf{Failed instances}: 534
+    \item \textbf{Average first restart count (successful cases)}: 1.18
+\end{itemize}
 \subsubsection{Comparison}
-显然 base construction 的构造方式相对 greedy fill-in 而言其实少了很多随机性, 但是 \texttt{./sa} 竟然对 base construction 得到的解有这么好的效果, 这可能提供了一种对三分类问题增加限制条件, 使得该 \texttt{./sa} 能较好解决的思路; 此外, 尽管两者的成功率差距很大, 但是在最大重启次数为 10 时, 其平均首次成功次数竟然都非常接近 1 这说明简单的增加一定规模的重启次数不能有效的增加 SA 的性能
+显然 base construction 的构造方式相对 greedy fill-in 而言其实少了很多随机性, 但是 \texttt{./sa} 竟然对 base construction 得到的解有这么好的效果.这可能提供了一种对三分类问题增加限制条件产生新的子问题, 使得该 \texttt{./sa} 能较好解决子问题的思路; 此外, 尽管两者的成功率差距很大, 但是在最大重启次数为 10 时, 其平均首次成功次数竟然都非常接近 1 这说明简单的增加一定规模的重启次数不能有效的增加 SA 的性能
 
 \subsection{综合分析}
 

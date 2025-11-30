@@ -1,8 +1,14 @@
-
 \documentclass[13pt,hyperref,a4paper,UTF8]{ctexart}
 \usepackage{zjuEnreport}
 \usepackage{booktabs}
 
+<<<<<<< HEAD
+\documentclass[13pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{zjuEnreport}
+\usepackage{booktabs}
+
+=======
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 \renewcommand{\figurename}{Figure}
 
 % 自定义表格前缀（如将“表”改为“Table”）
@@ -28,8 +34,17 @@
 
 %%可选择这里也放一个标题
 \begin{center}
+<<<<<<< HEAD
     \title{ \Huge \textbf{{}}}
 \end{center}
+=======
+    \title{ \Huge \textbf{{Three Partition}}}
+\end{center}
+\vspace{1cm} 
+    \textit{\large Abstract: This paper studies the 3-Partition problem, comparing DFS (with pruning), DP and SA algorithms. We test their performance across scales, extend to K-Partition, and find DFS fits small-scale exact solving, DP works for medium cases, and SA handles large-scale scenarios efficiently.}
+\vspace{1cm} 
+
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 
 \section{Project Description}
 This project aims to solve the \textbf{3-Partition Problem}. Given a multiset $S = \{a_1, a_2, \dots, a_N\}$ containing $N$ positive integers, we need to determine whether $S$ can be partitioned into three disjoint subsets $S_1, S_2, S_3$ such that the sum of the elements in each subset is equal.
@@ -158,6 +173,7 @@ To solve for large-scale inputs ($N=1000$) or the high-dimensional partition pro
     Therefore, the total complexity mainly depends on the preset parameters. In our implementation, we added a hard time limit (0.9 seconds). This makes the algorithm exhibit $O(1)$ constant time complexity in an engineering sense (it always stops within a fixed time relative to infinite problem growth), but at the cost of being unable to guarantee the completeness of the solution or prove the non-existence of a solution.
 \end{itemize}
 
+<<<<<<< HEAD
 \section{实验与测试分析}
 
 本实验对三种算法方法（DFS+剪枝、动态规划（DP）、模拟退火（SA））在三分类问题上的性能进行了系统测试，测试设计考虑了DFS在小规模输入上的表现, 剪枝策略的优化, 输入规模 $n$ 与总和 $sum$ 的变化对DP算法性能的影响, 以及 SA 算法在大规模输入上的稳定性
@@ -182,6 +198,29 @@ To solve for large-scale inputs ($N=1000$) or the high-dimensional partition pro
 \begin{tabular}{c|c|c|c|c}
 \hline
 $n$ & 平均时间 & 最大时间 & 最小时间 & 方差 \\
+=======
+\section{Test and Analysis}
+\subsection{Design of Test Data}
+
+Three categories of test data were designed in this experiment to evaluate the performance of the DFS, DP, and Simulated Annealing (SA) algorithms under different scales and structures.
+
+First, for the DFS section, We construct a set of test, with a small $n$ but a large $sum$ to examine the effectiveness of the pruning strategy under extreme conditions
+
+For the DP algorithm, three sets of test data were developed. The first set fixed $n$ while gradually increasing $sum$ to observe the time growth trend of the DP algorithm as the state space expands with the total sum. The second set fixed $sum$ while progressively increasing $n$ to analyze the sensitivity of DP to input scale. The third set continuously increased both $n$ and $sum$ simultaneously to evaluate the computable range of DP under large-scale data and perform fitting analysis on its empirical time complexity.
+
+Finally, for the Simulated Annealing (SA) section, to construct large-scale test instances that not only guarantee solvability but also exceed the handling capacity of DP (consistent with the practical application scenarios of SA), we adopted two construction approaches (base construction and greedy fill-in) to generate test sets with large $n$ and $sum$. The performance of \texttt{./sa} was observed with a maximum of 10 restarts allowed.
+
+\subsection{Test Results of DFS + Pruning}
+
+For data with small $n$ and large $sum$, when the pruning strategy failed, the computation time of the DFS algorithm increased significantly, and some data even experienced excessive computation time. The statistical results of the test are shown in Table~\ref{tab:dfs_time_stats}.
+
+\begin{table}
+\centering
+\caption{Runtime Statistics of DFS Algorithm (Seconds)}
+\begin{tabular}{c|c|c|c|c}
+\hline
+$n$ & Average Time & Maximum Time & Minimum Time & Variance \\
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 \hline
 10 & 0.0080 & 0.0182 & 0.0054 & 5.12e-05 \\
 15 & 0.0081 & 0.0145 & 0.0044 & 2.19e-05 \\
@@ -190,7 +229,11 @@ $n$ & 平均时间 & 最大时间 & 最小时间 & 方差 \\
 30 & 0.0921 & 0.1373 & 0.0049 & 0.0045 \\
 35 & 2.3341 & 9.2076 & 0.0043 & 7.41 \\
 40 & 3.1284 & 11.2849 & 0.0043 & 17.92 \\
+<<<<<<< HEAD
 45 & --- & 超时 & 0.0040 & --- \\
+=======
+45 & --- & Timeout & 0.0040 & --- \\
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 50 & 103.034 & 254.024 & 0.0044 & 12813.5 \\
 \hline
 \end{tabular}
@@ -198,6 +241,7 @@ $n$ & 平均时间 & 最大时间 & 最小时间 & 方差 \\
 \end{table}
 
 \begin{itemize}
+<<<<<<< HEAD
     \item 当剪枝条件失效时，DFS 的搜索空间呈指数级增长，时间复杂度接近 $O(k^n)$，其中 $k$ 为每个元素可选分类数量。
     \item $n=45$ 时出现超时现象，表明剪枝失效对 DFS 的影响极大。
     \item 对于小规模 $n<30$，剪枝有效时算法运行时间在毫秒级，性能较好。
@@ -221,6 +265,30 @@ $n$ & 平均时间 & 最大时间 & 最小时间 & 方差 \\
 \begin{tabular}{cccccc}
 \hline
 $total\_sum$ & mean & min & max & var \\
+=======
+    \item When the pruning condition fails, the search space of DFS grows exponentially, and the time complexity approaches $O(k^n)$, where $k$ is the number of optional partitions for each element.
+    \item A timeout occurred when $n=45$, indicating that the failure of pruning has a significant impact on DFS.
+    \item For small-scale $n<30$, the algorithm runs in milliseconds when pruning is effective, demonstrating excellent performance.
+\end{itemize}
+
+\subsection{Test Results of Dynamic Programming (DP)}
+
+To systematically evaluate the performance of the DP algorithm on the 3-partition problem, experiments were conducted under three typical scenarios:
+(1) Fixing $n$ and increasing $sum$; (2) Fixing $sum$ and increasing $n$; (3) Gradually increasing both $n$ and $sum$ simultaneously.
+The results of the three types of experiments are analyzed separately below.
+
+\subsubsection{Case 1: Fixing $n$ and Increasing $sum$}
+
+In this experiment, the number of elements $n$ was fixed, the total sum $sum$ was gradually increased, and the runtime of the DP algorithm was recorded. The experimental results are shown in Figure~\ref{fig:dp_fix_n}. It can be clearly observed that as $sum$ increases, the runtime of DP shows a non-linear growth trend, which is generally consistent with the theoretical complexity of DP, i.e., $O(n \cdot sum)$.
+
+\begin{table}[htbp]
+\centering
+\caption{Runtime Statistics of DP Algorithm When Fixing $n$ and Increasing $sum$ (Seconds)}
+\label{tab:dp_fix_n}
+\begin{tabular}{cccccc}
+\hline
+$total\_sum$ & Mean & Min & Max & Var \\
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 \hline
 10002  & 0.3868 & 0.3765 & 0.4156 & 0.000266 \\
 20001  & 1.5310 & 1.4883 & 1.6145 & 0.003158 \\
@@ -236,6 +304,7 @@ $total\_sum$ & mean & min & max & var \\
 \end{tabular}
 \end{table}
 
+<<<<<<< HEAD
 从数据中可以看出：
 
 \begin{itemize}
@@ -265,6 +334,38 @@ $total\_sum$ & mean & min & max & var \\
 \begin{tabular}{cccccc}
 \hline
 $n$ & mean & min & max & var \\
+=======
+The data reveals the following key observations:
+
+\begin{itemize}
+    \item When $sum$ is small (e.g., below $10^4$), the runtime grows relatively steadily, with the mean value maintaining between $0.3$ and $0.4$ seconds.
+    \item As $sum$ expands to the order of $10^5$, the runtime increases significantly with a simultaneous rise in variance, indicating the substantial impact of the expanded state table size on performance.
+    \item Fitting results for different complexity assumptions show that the $O(n^2)$ fitting curve best aligns with the experimental data (MSE = 0.772) with fitting parameters $[4.662\times10^{-9}, -0.0684]$, outperforming both $O(n)$ (MSE = 9.41) and $O(n \log n)$ (MSE = 7.45) fittings.
+\end{itemize}
+
+The experimental data and fitting curves are presented in Figure~\ref{fig:dp_fix_n}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/fixedn.png}
+\caption{DP Algorithm Runtime and Comparison of Fitting Curves for Different Complexities When Fixing $n$ and Increasing $sum$}
+\label{fig:dp_fix_n}
+\end{figure}
+
+In summary, with $n$ fixed, the runtime of the DP algorithm increases monotonically with $sum$, showing a stable and predictable trend. Even for large-scale $sum$, its performance is significantly superior to DFS, demonstrating excellent stability and scalability.
+
+\subsubsection{Case 2: Fixing $sum$ and Increasing $n$}
+
+In this set of experiments, the total sum $sum$ was fixed, the input scale $n$ was gradually increased, and the test results are shown in Figure~\ref{fig:dp_fix_sum}. The size of the DP state space is linearly related to $n$, so the increase in runtime is mainly caused by the growing number of iterations.
+
+\begin{table}[htbp]
+\centering
+\caption{Runtime Statistics of DP Algorithm When Fixing $sum$ and Increasing $n$ (Seconds)}
+\label{tab:dp_fix_sum}
+\begin{tabular}{cccccc}
+\hline
+$n$ & Mean & Min & Max & Var \\
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 \hline
 100  & 4.3085  & 4.2870  & 4.3247  & 0.000170 \\
 200  & 10.1568 & 9.9115  & 10.7473 & 0.090331 \\
@@ -280,15 +381,23 @@ $n$ & mean & min & max & var \\
 \end{tabular}
 \end{table}
 
+<<<<<<< HEAD
 拟合曲线~\ref{fig:dp_fix_sum}中可以观察到：
 
 \begin{itemize}
     \item 在中小规模 $n$ 范围内，DP 的运行时间基本保持线性增长，拟合结果表明 $O(n)$ 拟合较为贴合。通过最小二乘法拟合得到的时间复杂度函数为：
+=======
+As observed from the fitting curve in Figure~\ref{fig:dp_fix_sum}:
+
+\begin{itemize}
+    \item Within the range of small and medium-scale $n$, the runtime of DP basically maintains a linear growth trend, and the $O(n)$ fitting provides a good fit. The time complexity function obtained through least squares fitting is:
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
     
     \begin{equation}
     T(n) = 0.073154 \cdot n - 4.374624
     \end{equation}
     
+<<<<<<< HEAD
     拟合的均方误差（MSE）为 $12.146$ 仍然可以接受
 \end{itemize}
 
@@ -302,10 +411,26 @@ $n$ & mean & min & max & var \\
 \subsubsection{同时增大 $n$ 与 $sum$ 的情况}
 
 为了进一步评估动态规划算法在大规模输入下的极限性能，我们系统地同时增大输入规模 $n$（项目数量）与 $sum$（目标和），使DP的状态空间呈二次方级增长（$O(n \cdot sum^2)$）。测试结果如图~\ref{fig:dp_scale_up}所示。
+=======
+    The mean squared error (MSE) of the fitting is 12.146, which is still acceptable.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/dp_time_fit_en.png}
+\caption{DP Algorithm Runtime and $O(n)$ Fitting Curve When Fixing $sum$ and Increasing $n$}
+\label{fig:dp_fix_sum}
+\end{figure}
+
+\subsubsection{Case 3: Increasing Both $n$ and $sum$ Simultaneously}
+
+To further evaluate the extreme performance of the dynamic programming algorithm under large-scale inputs, we systematically increased both the input scale $n$ (number of items) and $sum$ (target sum) simultaneously, leading to a quadratic growth of the DP state space ($O(n \cdot sum^2)$). The test results are shown in Figure~\ref{fig:dp_scale_up}.
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/3D.png}
+<<<<<<< HEAD
 \caption{动态规划算法在$n$与$sum$同时增大时的性能可视化。图中蓝色散点为实际运行时间，绿色曲面为基于$O(n \cdot sum^2)$复杂度模型的拟合结果。参数拟合结果为$T = 2.07 \times 10^{-10} \cdot n \cdot sum^2 - 0.179$，拟合优度$R^2 = 0.9959$，表明模型能够准确描述算法的时间复杂度。}
 \label{fig:dp_scale_up}
 \end{figure}
@@ -334,12 +459,45 @@ $n$ & mean & min & max & var \\
 对于每个生成的实例，脚本将数组写入 \texttt{input.txt}，随后最多运行 \(K_{\max} = 10\) 次 \texttt{./sa}，直到其找到正确解为止。每次求解结束后使用 \texttt{./check} 进行正确性验证，并记录首次成功的重启次数。
 
 在实验中, 我们取用 20 组基 (基中最大元素小于300), 每次至少选 10 组来构造 T; 当我们测试了 10000 组解(这样的生成方式很快) 后发现, 若最多允许 \texttt{./sa} 重启 10 次, 我们得到如下结果: 
+=======
+\caption{Performance Visualization of Dynamic Programming Algorithm When Both $n$ and $sum$ Increase Simultaneously. The blue scatter points represent the actual runtime, and the green surface is the fitting result based on the $O(n \cdot sum^2)$ complexity model. The parameter fitting result is $T = 2.07 \times 10^{-10} \cdot n \cdot sum^2 - 0.179$ with a goodness of fit $R^2 = 0.9959$, indicating that the model can accurately describe the time complexity of the algorithm.}
+\label{fig:dp_scale_up}
+\end{figure}
+
+The visualization results clearly show that as both $n$ and $sum$ expand, the runtime of the DP algorithm grows rapidly. Specifically:
+
+\begin{itemize}
+    \item \textbf{Exponential Growth Characteristic}: The runtime exhibits a distinct non-linear growth trend with the increase of $n$ and $sum$, which is highly consistent with the theoretical complexity of $O(n \cdot sum^2)$ ($R^2 = 0.9959$).
+    
+    \item \textbf{Hardware Limitation Reached}: Within the test range of $n \in [50, 450]$ and $sum \in [5208, 47349]$, the maximum runtime has increased significantly, and timeout or memory overflow phenomena have been observed at some data points.
+    
+    \item \textbf{Computability Boundary}: The actual computable range of the DP algorithm is strictly limited by the scale of $n \cdot sum^2$. When both parameters grow simultaneously, the algorithm quickly enters the non-computable region, highlighting the inherent limitation of the state space combinatorial explosion problem.
+\end{itemize}
+
+This experiment empirically verifies the irreplaceable significance of the simulated annealing algorithm for large-scale inputs. Although the dynamic programming algorithm guarantees optimality for small-scale problems, its computational complexity prevents it from scaling to real-world large-scale optimization problems, emphasizing the necessity of heuristic algorithms in practical applications.
+
+\subsection{Test Results of Simulated Annealing (SA)}
+
+\subsubsection{Base Construction}
+
+First, a set of small-scale, solvable benchmark instances was verified using the DP algorithm, denoted as $S_1, S_2, \ldots, S_m$. An arbitrary selection of $k$ instances (with repetition allowed) was made from these as construction bases, denoted as $A_1, A_2, \ldots, A_k$. Each base was assigned a distinct weight to construct the final test set:
+\[
+  T = \sum_{i=1}^{k} factor_i \times A_i, \ factor_i = random(1, 7^6)
+\]
+where the symbol "$\times$" denotes multiplying each element in set $A_i$ by the weight $factor_i$. This hierarchical structure ensures that the solvability of each individual $A_i$ is preserved after combination.
+
+For each generated instance, the script writes the array to \texttt{input.txt} and then runs \texttt{./sa} a maximum of $K_{\max} = 10$ times until a correct solution is found. After each solution attempt, \texttt{./check} is used for correctness verification, and the number of restarts required for the first successful solution is recorded.
+
+In the experiment, 20 base instances were used (with the maximum element in each base less than 300), and at least 10 bases were selected each time to construct $T$. After testing 10,000 instances (a process that is computationally efficient with this generation method), the following results were obtained when allowing a maximum of 10 restarts for \texttt{./sa}:
+
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 \begin{itemize}
     \item \textbf{Total instances}: 10{,}000
     \item \textbf{Failed instances}: 73
     \item \textbf{Average first restart count (successful cases)}: 1.10
 \end{itemize}
 
+<<<<<<< HEAD
 \subsubsection{greedy fill-in}
 
 为了进一步评估模拟退火算法（\texttt{./sa}）的性能与稳定性，我们额外构建了一类 \textbf{保证一定存在可行解} 的测试集。生成脚本通过严格控制总和与元素构造方式，使得每个输入实例都满足三分类问题的可解性条件。
@@ -409,6 +567,85 @@ $n$ & mean & min & max & var \\
     \item \textbf{DFS} 在强力剪枝的辅助下，是解决中小规模（$N \le 60$）及大数值问题的最佳精确解法。
     \item \textbf{DP} 揭示了该问题的伪多项式性质，适用于 $N$ 较大但数值总和较小的特定场景，但在通用性上受限于内存瓶颈。
     \item \textbf{模拟退火} 作为启发式算法，展示了在处理大规模输入（$N=1000$）和高维变体（Bonus $K$-Partition）时的强大能力，虽然牺牲了完备性，但换取了极高的工程实用性。
+=======
+\subsubsection{Greedy Fill-in}
+
+Given the exceptional performance of \texttt{./sa} observed with the first construction approach, an additional set of test instances \textbf{guaranteed to have feasible solutions} was constructed to further evaluate the stability of the simulated annealing algorithm (\texttt{./sa}). The generation script strictly controls the total sum and element construction method to ensure that each input instance satisfies the solvability conditions of the 3-partition problem.
+
+During the generation phase, the script fixes the array length (set to $n = 1000$ in this experiment) and restricts all elements to the interval $[1, 10^{6}]$. First, balanced target sums are assigned to the three partitions. Random numbers are then sequentially generated to fill each partition while ensuring no exceedance of the target sum. After generation, a final consistency correction step is performed to ensure the total sum of the array is exactly divisible by the number of partitions, thus guaranteeing the existence of a \textbf{perfect 3-partition} solution for each instance.
+
+For each generated instance, the script writes the array to \texttt{input.txt} and then runs \texttt{./sa} a maximum of $K_{\max} = 10$ times until a correct solution is found. After each solution attempt, \texttt{./check} is used for correctness verification, and the number of restarts required for the first successful solution is recorded.
+
+The obtained results are as follows:
+
+\begin{itemize}
+    \item \textbf{Total instances}: 1000
+    \item \textbf{Failed instances}: 534
+    \item \textbf{Average first restart count (successful cases)}: 1.18
+\end{itemize}
+
+\subsubsection{Comparison}
+
+Evidently, the base construction approach introduces significantly less randomness compared to the greedy fill-in method, yet \texttt{./sa} achieves remarkably better performance on instances generated via base construction. This insight suggests a potential research direction: imposing additional constraints on the 3-partition problem to form new subproblems that can be efficiently solved by the proposed \texttt{./sa} algorithm. Furthermore, despite the substantial gap in success rates between the two approaches, the average number of restarts for the first successful solution is very close to 1 when the maximum number of restarts is set to 10. This indicates that simply increasing the number of restarts within a certain range does not effectively improve the performance of SA.
+
+\subsection{Comprehensive Analysis}
+
+\begin{itemize}
+    \item DFS + Pruning achieves excellent performance on small-scale data, but its performance degrades drastically when pruning fails due to exponential growth of the search space.
+    \item The DP algorithm is stable and efficient for small-to-medium-scale data, but it may fail to return results for extremely large data due to constraints imposed by the product of $n$ and $sum$.
+    \item SA is suitable for large-scale or approximate solution scenarios, enabling rapid acquisition of feasible solutions, although with a lower accuracy rate compared to DP.
+\end{itemize}
+
+In conclusion, different algorithms are suited for 3-partition problems of varying scales and scenarios: DFS is more suitable for small-scale exact solutions, DP for medium-scale optimal solutions, and SA for large-scale approximate solutions.
+
+\section{Bonus: Generalization to K-Partition}
+
+We explore the applicability and complexity changes of the aforementioned algorithms when the number of partitions is generalized from 3 to $K$ ($K=4, 5, \dots$), i.e., the \textbf{K-Partition Problem}.
+
+\subsection{Depth-First Search (DFS): Exponential Explosion}
+\begin{itemize}
+    \item \textbf{Applicability}: The DFS algorithm exhibits logical generality and can be directly applied by simply modifying the number of target partitions from 3 to $K$.
+    \item \textbf{Complexity Analysis}: Each item now has $K$ possible choices.
+    \[ T(N, K) = O(K^N) \]
+    As $K$ increases, the width (branching factor) of the search tree expands rapidly, leading to an exponential explosion in computational complexity.
+    \item \textbf{Pruning Effect}: 
+    Although the baseline complexity deteriorates, the effectiveness of \textit{Symmetry Breaking Pruning} becomes more pronounced with the increase of $K$. Since the initial $K$ empty partitions are completely equivalent, the search space is reduced by a factor of $K!$ (the number of isomorphic solutions). Nevertheless, DFS remains impractical for large $N$ and $K$ within a reasonable time frame.
+\end{itemize}
+
+\subsection{Dynamic Programming (DP): Memory Limitation}
+\begin{itemize}
+    \item \textbf{Applicability}: Theoretically feasible, but practically infeasible due to severe memory constraints.
+    \item \textbf{State Definition Change}: To determine the state of the first $K-1$ partitions (the state of the last partition is implicitly constrained by the total sum), a $K-1$-dimensional state space must be maintained:
+    \[ dp[s_1][s_2]\dots[s_{K-1}] \]
+    \item \textbf{Complexity Analysis}:
+    \[ \text{Time/Space Complexity} = O(N \cdot \text{Target}^{K-1}) \]
+    \item \textbf{Case Analysis}:
+    Assume $\text{Target}=100$, with each dimension size set to 100.
+    \begin{itemize}
+        \item For $K=3$, the space complexity is $100^2 = 10,000$, which is memory-controllable.
+        \item For $K=4$, the space complexity is $100^3 = 1,000,000$, which is still acceptable.
+        \item For $K=10$, the space complexity is $100^9$, which far exceeds the physical memory limits of computers and even surpasses the capacity of hard disk storage.
+    \end{itemize}
+    \textbf{Conclusion}: The DP algorithm lacks the ability to generalize to high-dimensional partition problems.
+\end{itemize}
+
+\subsection{Simulated Annealing (SA)}
+\begin{itemize}
+    \item \textbf{Applicability}: Simulated annealing demonstrates excellent robustness in handling the K-Partition problem. Only the objective function and the number of partitions need to be modified without changing the core logic of the algorithm.
+    \item \textbf{Complexity Analysis}:
+    \[ T(N, K) \approx O(\text{Iterations} \cdot K) \]
+    Its complexity grows only linearly with $K$ (primarily attributed to the computation of the energy function; with incremental updates, this can even be optimized to $O(1)$, independent of $K$).
+    \item \textbf{Advantages}: It avoids the exponential depth of DFS and the exponential space requirement of DP, making it an engineering-feasible solution for large-scale K-Partition problems (e.g., $K=100, N=10000$).
+\end{itemize}
+
+\section{Conclusion and Discussion}
+
+In this project, we conducted an in-depth study of the 3-Partition problem and compared three algorithms with distinct characteristics:
+\begin{enumerate}
+    \item \textbf{DFS}, augmented with powerful pruning techniques, is the optimal exact solution method for small-to-medium-scale problems ($N \le 60$) and problems involving large numerical values.
+    \item \textbf{DP} reveals the pseudo-polynomial nature of the problem and is suitable for specific scenarios with large $N$ but small total sums. However, its general applicability is constrained by memory bottlenecks.
+    \item \textbf{Simulated Annealing}, as a heuristic algorithm, demonstrates exceptional capabilities in handling large-scale inputs ($N=1000$) and high-dimensional variants (the Bonus K-Partition problem). While sacrificing completeness, it achieves remarkable engineering practicality.
+>>>>>>> 9b22acd5f01e375d52ca4b87277e4fc0393b8b80
 \end{enumerate}
 
 \end{document}
