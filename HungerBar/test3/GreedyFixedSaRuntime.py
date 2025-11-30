@@ -102,7 +102,7 @@ def write_input(arr, filename="input.txt"):
 
 def run_sa():
     result = subprocess.run(
-        ["./sa"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        ["./sa_greedy.exe"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
     )
     return result.returncode
 

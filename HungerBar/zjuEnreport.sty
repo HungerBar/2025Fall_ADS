@@ -47,6 +47,7 @@
 
 %% 更改摘要二字的样式
 \renewcommand{\abstractname}{\textbf{\large {Abstraction}}} 
+\renewcommand{\contentsname}{\textbf{\large {Contents}}}
 
 %可固定下划线长度
 \makeatletter
@@ -158,7 +159,7 @@
 
 %封面页设置
 {   
-    \title{ \vspace{2cm} \heiti \Huge \textbf{{ADS Project}} \par
+    \title{ \vspace{2cm} \heiti \Huge \textbf{{Advanced Data Structures and Algorithm Analysis Project Report}} \par
     \vspace{1cm} 
     \heiti \Large {\underline{Three Partition}}    
     \vspace{3cm} }%标题
@@ -167,12 +168,14 @@
     \vspace{0.5cm}
     \kaishu\Large GroupID\ \dlmu[9cm]{17} \qquad \\ %姓名 
     \vspace{0.5cm}
-    \kaishu\Large  学号\ \dlmu[9cm]{} \qquad  \\ %学号
+    \kaishu\Large  Member\ \dlmu[9cm]{谢骐骏，许景轶，朱泽豪} \qquad  \\ %学号
     \vspace{0.5cm}
-    \kaishu\Large   院所\ \dlmu[9cm]{} %院所
+    %\kaishu\Large   院所\ \dlmu[9cm]{} %院所
         }
         
     %\date{\today} % 默认为今天的日期，可以注释掉不显示日期
+    \date{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\day, \number\year}
+
 }
 
 %%在这里可更改封面logo
