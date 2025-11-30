@@ -1,54 +1,58 @@
-由于测试文件非常多, 这里说明各个脚本用途以及相关 `.csv` 结果
+Since the number of test files is large, this section briefly introduces each `.csv` result. For full details, see the report.
 
 #### `Util/`
 
-绘图统计工具, 不重要
+Utility scripts for plotting and statistics. Not important.
 
 #### `DFS/`
 
 ##### `dfs.csv`
 
-- **`n`**：元素数量（问题规模）
-- **`dfs_time`**：算法运行时间（秒）
-- **`dfs_check`**：算法输出正确性标记（如 `Correct` 或 `"Correct(Output no, maybe wrong)"`）
+- **`n`**: Number of elements (problem size)
+- **`dfs_time`**: Runtime of the DFS algorithm (seconds)
+- **`dfs_check`**: Correctness indicator (e.g., `Correct` or `"Correct(Output no, maybe wrong)"`)
 
-测试中**改变输入集元素个数 `n`**，控制其他条件（算法实现、硬件环境、输入类型等）保持固定，以便观察 DFS 剪枝在不同规模下的表现。
+In this test, **the number of elements `n` is varied**, while other conditions (algorithm implementation, hardware environment, input type, etc.) are kept fixed to observe DFS pruning performance at different scales.
 
 #### `DP/`
 
 ##### `dp_fixedn_results.csv`
 
-- **`n`**：元素数量（问题规模）
-- **`total_sum`**：输入数组的总和
-- **`dp_time`**：动态规划算法运行时间（秒）
-- **`correct`**：算法输出正确性标记（True/False）
+- **`n`**: Number of elements (problem size)
+- **`total_sum`**: Total sum of the input array
+- **`dp_time`**: Runtime of the dynamic programming algorithm (seconds)
+- **`correct`**: Correctness indicator (True/False)
 
-测试中**固定问题规模 `n=50`**，改变输入数组的总和 `total_sum`，其他条件（算法实现、硬件环境、输入类型等）保持不变，以便观察动态规划算法在不同总和下的运行时间和正确性表现。
+In this test, **the problem size is fixed at `n = 50`**, and the total sum `total_sum` is varied. All other conditions are kept the same to study how runtime changes with different total sums.
 
-##### `dp_fixedsum_results`
+##### `dp_fixedsum_results.csv`
 
-- **`n`**：元素数量（问题规模）
-- **`total_sum`**：输入数组的总和
-- **`dp_time`**：动态规划算法运行时间（秒）
-- **`correct`**：算法输出正确性标记（True/False）
+- **`n`**: Number of elements (problem size)
+- **`total_sum`**: Total sum of the input array
+- **`dp_time`**: Runtime of the dynamic programming algorithm (seconds)
+- **`correct`**: Correctness indicator (True/False)
 
-测试中**固定输入数组总和 `total_sum`**，改变问题规模 `n`，其他条件（算法实现、硬件环境、输入类型等）保持不变，以便观察动态规划算法在不同规模下的运行时间和正确性表现。
+In this test, **the total sum `total_sum` is fixed**, and the problem size `n` is varied. Other conditions remain unchanged to observe how runtime scales with larger inputs.
 
 ##### `dpbase100.csv`
 
-- **`n`**：元素数量（问题规模）
-- **`sum`**：输入数组总和
-- **`dp_time`**：动态规划算法运行时间（秒）
-- **`correct`**：算法输出正确性标记（True/False）
+- **`n`**: Number of elements (problem size)
+- **`sum`**: Total sum of the input array
+- **`dp_time`**: Runtime of the dynamic programming algorithm (seconds)
+- **`correct`**: Correctness indicator (True/False)
 
-测试中**固定每个元素大致在 `base≈100` 附近**，改变问题规模 `n`，其他条件（算法实现、硬件环境、输入类型等）保持不变，以便观察动态规划算法在不同规模下的运行时间和正确性表现, 并且拟合理论时间复杂度。
+In this test, **each element is generated to be roughly around `base ≈ 100`**, while the problem size `n` varies. Other conditions remain fixed. The dataset is also used to **fit and verify the theoretical time complexity** of the DP algorithm.
 
 #### `SA/`
 
 ##### `saBasetoBig.csv`
 
-记录 ./sa 对基构造出大输入解的状况: 如果正确会包含重启次数, 否则标记 -1
+Records the performance of `./sa` on large inputs generated from base constructions.
+If the solution is correct, the restart count is recorded; otherwise, `-1` is used.
 
 ##### `saGreedyFix.csv`
 
-记录 ./sa 对贪心桶放
+Records the performance of `./sa` on large inputs constructed using the greedy fill-in method.
+If the solution is correct, the restart count is recorded; otherwise, `-1` is used.
+
+---

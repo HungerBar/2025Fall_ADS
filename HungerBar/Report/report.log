@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.26)  30 NOV 2025 22:25
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.26)  30 NOV 2025 23:31
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**prereport.tex
-(./prereport.tex
+**report.tex
+(./report.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-09>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/ctex/ctexart.cls (/usr/local/texlive/2024/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg
@@ -337,7 +337,7 @@ Package fontspec Info:
 
 ))) (/usr/local/texlive/2024/texmf-dist/tex/latex/ctex/config/ctex.cfg
 File: ctex.cfg 2022/07/14 v2.5.10 Configuration file (CTEX)
-) (/Users/qjxie/Library/texmf/tex/latex/classPa/zjuEnreport.sty
+) (./zjuEnreport.sty
 Package: zjuEnreport 
  (/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
@@ -369,10 +369,10 @@ Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/usr/local/texlive/2024/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-
-(/usr/local/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/usr/local/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
@@ -947,8 +947,8 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 LaTeX Warning: Unused global option(s):
     [13pt].
 
-(./prereport.aux)
-\openout1 = `prereport.aux'.
+(./report.aux)
+\openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -1063,9 +1063,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 12.
-(./prereport.out) (./prereport.out)
+(./report.out) (./report.out)
 \@outlinefile=\write4
-\openout4 = `prereport.out'.
+\openout4 = `report.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
@@ -1160,16 +1160,23 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <9.03374> not available
 
 [1
 
-] (./prereport.toc
+] (./report.toc
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 3.
 )
 \tf@toc=\write5
-\openout5 = `prereport.toc'.
+\openout5 = `report.toc'.
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
 
 [2]
 
@@ -1207,28 +1214,80 @@ Package fontspec Info:
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
 [3]
+Overfull \hbox (29.0052pt too wide) in paragraph at lines 85--86
+[]\TU/lmr/m/n/10.53937 After the algorithm finishes, if $\OML/cmm/m/it/10.53937 dp\OT1/cmr/m/n/10.53937 [\OML/cmm/m/it/10.53937 Target\OT1/cmr/m/n/10.53937 ][\OML/cmm/m/it/10.53937 Target\OT1/cmr/m/n/10.53937 ]$ \TU/lmr/m/n/10.53937 is true, we backtrack from $\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 N; Target; Target\OT1/cmr/m/n/10.53937 )$
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
 
 [4]
+Overfull \hbox (7.81776pt too wide) in paragraph at lines 113--114
+[]\TU/lmr/m/n/10.53937 If $\OT1/cmr/m/n/10.53937 ^^A\OML/cmm/m/it/10.53937 E \OMS/cmsy/m/n/10.53937 ^^U \OT1/cmr/m/n/10.53937 0$ \TU/lmr/m/n/10.53937 (the new state is worse), accept the new state with probability $\OML/cmm/m/it/10.53937 P \OT1/cmr/m/n/10.53937 = [](\OMS/cmsy/m/n/10.53937 ^^@\OT1/cmr/m/n/10.53937 ^^A\OML/cmm/m/it/10.53937 E\OT1/cmr/m/n/10.53937 /\OML/cmm/m/it/10.53937 T\OT1/cmr/m/n/10.53937 )$\TU/lmr/m/n/10.53937 ,
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
 
 [5]
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
 [6]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 213.
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 213.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 213.
-
+[7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 213.
+(hyperref)                removing `math shift' on input line 212.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 212.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 212.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 212.
+
+
+Overfull \hbox (4.20654pt too wide) in paragraph at lines 243--244
+\TU/lmr/m/n/10.53937 aligns with the experimental data (MSE = 0.772) with fitting parameters $\OT1/cmr/m/n/10.53937 [4\OML/cmm/m/it/10.53937 :\OT1/cmr/m/n/10.53937 662 \OMS/cmsy/m/n/10.53937 ^^B \OT1/cmr/m/n/10.53937 10[]\OML/cmm/m/it/10.53937 ; \OMS/cmsy/m/n/10.53937 ^^@\OT1/cmr/m/n/10.53937 0\OML/cmm/m/it/10.53937 :\OT1/cmr/m/n/10.53937 0684]$\TU/lmr/m/n/10.53937 ,
+ []
 
 File: figures/fixedn.png Graphic file (type bmp)
 <figures/fixedn.png>
@@ -1250,7 +1309,23 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[7]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
+[8]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
+[9]
 File: figures/dp_time_fit_en.png Graphic file (type bmp)
 <figures/dp_time_fit_en.png>
 
@@ -1270,34 +1345,82 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 302.
 
-
-
-[8]
 File: figures/3D.png Graphic file (type bmp)
 <figures/3D.png>
 
+Overfull \hbox (15.68782pt too wide) in paragraph at lines 318--319
+[]\TU/lmr/bx/n/10.53937 Hardware Limitation Reached\TU/lmr/m/n/10.53937 : Within the test range of $\OML/cmm/m/it/10.53937 n \OMS/cmsy/m/n/10.53937 2 \OT1/cmr/m/n/10.53937 [50\OML/cmm/m/it/10.53937 ; \OT1/cmr/m/n/10.53937 450]$ \TU/lmr/m/n/10.53937 and $\OML/cmm/m/it/10.53937 sum \OMS/cmsy/m/n/10.53937 2 \OT1/cmr/m/n/10.53937 [5208\OML/cmm/m/it/10.53937 ; \OT1/cmr/m/n/10.53937 47349]$\TU/lmr/m/n/10.53937 ,
+ []
 
-[9]
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
 
 [10]
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
 [11]
 
-[12] (./prereport.aux)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
+[12]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
+[13]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
+[14]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 12.64723pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.64723pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.64723pt}.
+
+[15] (./report.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
-Package rerunfilecheck Info: File `prereport.out' has not changed.
-(rerunfilecheck)             Checksum: 7FC5AC1C9B85B587F2E9CCD041C599C1;5175.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: E305C54656D77E76909C34BC9C93335E;6756.
  ) 
 Here is how much of TeX's memory you used:
- 32292 strings out of 468388
- 702734 string characters out of 5440602
- 1096128 words of memory out of 5000000
- 60217 multiletter control sequences out of 15000+600000
- 649217 words of font info for 169 fonts, out of 8000000 for 9000
+ 32044 strings out of 468388
+ 686708 string characters out of 5440602
+ 1088315 words of memory out of 5000000
+ 59975 multiletter control sequences out of 15000+600000
+ 649169 words of font info for 163 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 117i,12n,120p,1221b,513s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,12n,120p,1218b,526s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on prereport.xdv (12 pages, 187840 bytes).
+Output written on report.xdv (15 pages, 303656 bytes).
