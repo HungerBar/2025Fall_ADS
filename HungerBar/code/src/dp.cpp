@@ -2,20 +2,20 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <cstring> // for strcmp
-#include <cstdio>  // for sprintf
+#include <cstring> 
+#include <cstdio>  
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    char input_path[256] = "../../testcase/1.in";
-    char output_path[256] = "../../testcase/1.out";
+    char input_path[256] = "../../testcases/1.in";
+    char output_path[256] = "../../testcases/1.out";
 
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-test") == 0) {
             if (i + 1 < argc) {
-                sprintf(input_path, "../../testcase/%s.in", argv[i+1]);
-                sprintf(output_path, "../../testcase/%s.out", argv[i+1]);
+                sprintf(input_path, "../../testcases/%s.in", argv[i+1]);
+                sprintf(output_path, "../../testcases/%s.out", argv[i+1]);
                 i++; 
             } else {
                 cerr << "Error: -test option requires an argument." << endl;
