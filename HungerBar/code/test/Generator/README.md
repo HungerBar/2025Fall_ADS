@@ -77,7 +77,7 @@ python dp3_generate.py --n_list 50 100 200 --trials 5 --output_dir testcases
 
 ## `BaseGen.py`
 
-Generates small-scale strictly solvable arrays for subsequent combination tasks. Each array is verified for solvability using legacy code (`./dp` + `./check`).
+Generates small-scale strictly solvable arrays for subsequent combination tasks. Each array is verified for solvability using legacy code (`./dp` + `./check`and these are the old version of codes, so it can't be generate again conveniently).
 
 ### Usage
 

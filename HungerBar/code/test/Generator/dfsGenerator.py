@@ -3,21 +3,18 @@ import os
 import random
 
 
-# ============================================================
-# 生成更难剪枝的 DFS 测试数据
-# ============================================================
+# build difficult test data for DFS
 def gen_hard_dfs_data(n, case_idx, maxv=2000, file_path="input.txt"):
     """
-    生成极难剪枝的 DFS 测试数据：
-        - 数值集中在一个极窄区间 [maxv/3, maxv/2] ± 3
-        - 打乱顺序，破坏排序剪枝
-        - 桶差异极小，破坏空桶剪枝
+    * The numerical values are concentrated in a very narrow range `[maxv/3, maxv/2] ± 3`.
+    * Shuffle the order to break the sorted-order pruning.
+    * The differences between buckets are very small, which breaks the empty-bucket pruning.
     """
     base = [random.randint(maxv // 3, maxv // 2) for _ in range(n)]
     arr = [v + random.randint(-3, 3) for v in base]
     random.shuffle(arr)
 
-    # 确保父目录存在
+    # check
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
     with open(file_path, "w") as f:
@@ -29,9 +26,6 @@ def gen_hard_dfs_data(n, case_idx, maxv=2000, file_path="input.txt"):
     )
 
 
-# ============================================================
-# 主流程（支持同规模重复生成）
-# ============================================================
 def main():
     parser = argparse.ArgumentParser(
         description="生成 DFS 剪枝压力测试数据（dfsi.in 命名）"
@@ -59,10 +53,9 @@ def main():
 
     args = parser.parse_args()
 
-    # 连续编号
     global_case_idx = 1
 
-    # 按规模 × 重复次数生成数据
+    # repeat x
     for n in args.ns:
         for _ in range(args.repeat):
 

@@ -3,9 +3,7 @@ import os
 import random
 
 
-# =====================================================
-#              Test Data Generation
-# =====================================================
+# generate the fixed n, variable sum testcases
 def gen_test_data_fixed_sum(n, total_sum, min_val=1, max_val=None, file="input.txt"):
     """
     Generate n positive integers whose sum equals total_sum
@@ -52,9 +50,6 @@ def gen_test_data_fixed_sum(n, total_sum, min_val=1, max_val=None, file="input.t
     return arr
 
 
-# =====================================================
-#                         Main
-# =====================================================
 def main():
     parser = argparse.ArgumentParser(
         description="Generate test cases with fixed n and total_sum"
