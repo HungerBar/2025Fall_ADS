@@ -1,0 +1,47 @@
+n,./dfs_time,./dfs_check
+10,0.005568981170654297,"Correct(Output no, maybe wrong)"
+15,0.004766941070556641,"Correct(Output no, maybe wrong)"
+20,0.004282236099243164,"Correct(Output no, maybe wrong)"
+25,0.004281044006347656,"Correct(Output no, maybe wrong)"
+30,0.10655689239501953,Correct
+35,9.207566261291504,Correct
+40,0.0043942928314208984,"Correct(Output no, maybe wrong)"
+45,0.0046329498291015625,"Correct(Output no, maybe wrong)"
+50,0.0043718814849853516,"Correct(Output no, maybe wrong)"
+10,0.010889053344726562,"Correct(Output no, maybe wrong)"
+15,0.009783029556274414,Correct
+20,0.013348102569580078,"Correct(Output no, maybe wrong)"
+25,0.0051310062408447266,"Correct(Output no, maybe wrong)"
+30,0.021356821060180664,Correct
+35,0.513822078704834,Correct
+40,0.0069429874420166016,"Correct(Output no, maybe wrong)"
+45,0.008458852767944336,"Correct(Output no, maybe wrong)"
+50,0.007555961608886719,"Correct(Output no, maybe wrong)"
+10,0.005390167236328125,"Correct(Output no, maybe wrong)"
+15,0.004395008087158203,"Correct(Output no, maybe wrong)"
+20,0.004205942153930664,"Correct(Output no, maybe wrong)"
+25,0.004743814468383789,"Correct(Output no, maybe wrong)"
+30,0.13733887672424316,Correct
+35,0.004752159118652344,"Correct(Output no, maybe wrong)"
+40,0.004324197769165039,"Correct(Output no, maybe wrong)"
+45,0.004008054733276367,"Correct(Output no, maybe wrong)"
+50,44.67623996734619,Correct
+10,0.018169164657592773,"Correct(Output no, maybe wrong)"
+15,0.01446676254272461,Correct
+20,0.014952898025512695,"Correct(Output no, maybe wrong)"
+25,0.010102033615112305,"Correct(Output no, maybe wrong)"
+30,0.01246190071105957,"Correct(Output no, maybe wrong)"
+35,7.289052724838257,Correct
+40,0.37406396865844727,Correct
+45,0.00542902946472168,"Correct(Output no, maybe wrong)"
+50,254.02402210235596,Correct
+n,dfs_time,dfs_check
+10,0.006006,"Correct(Output no, maybe wrong)"
+15,0.004731,"Correct(Output no, maybe wrong)"
+20,0.004716,"Correct(Output no, maybe wrong)"
+25,0.008739,Correct
+30,0.004931,Correct
+35,0.004329,"Correct(Output no, maybe wrong)"
+40,11.284952,Correct
+45,inf,
+
