@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cstdlib> 
 #include <fstream>
+#include <cstring> // for strcmp
+#include <cstdio>  // for sprintf
 
 using namespace std;
 
@@ -53,13 +55,38 @@ bool dfs(int index) {
     return false;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     // Faster I/O
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    ifstream fin("input.txt");
-    ofstream fout("output.txt");
+    char input_path[256] = "../../testcase/1.in";
+    char output_path[256] = "../../testcase/1.out";
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-test") == 0) {
+            if (i + 1 < argc) {
+                sprintf(input_path, "../../testcase/%s.in", argv[i+1]);
+                sprintf(output_path, "../../testcase/%s.out", argv[i+1]);
+                i++; 
+            } else {
+                cerr << "Error: -test option requires an argument." << endl;
+                return 1;
+            }
+        }
+    }
+
+    ifstream fin(input_path);
+    ofstream fout(output_path);
+
+    if (!fin.is_open()) {
+        cerr << "Error: Cannot open input file: " << input_path << endl;
+        return 1;
+    }
+    if (!fout.is_open()) {
+        cerr << "Error: Cannot open output file: " << output_path << endl;
+        return 1;
+    }
 
     if (!(fin >> N)) return 0;
 
@@ -79,6 +106,7 @@ int main() {
     if (sum % 3 != 0 || N < 3) {
         fout << "no" << endl;
         delete[] numbers; delete[] belong_to; delete[] bucket_sum;
+        fin.close(); fout.close();
         return 0;
     }
 
@@ -92,6 +120,7 @@ int main() {
     if (numbers[0] > target) {
         fout << "no" << endl;
         delete[] numbers; delete[] belong_to; delete[] bucket_sum;
+        fin.close(); fout.close();
         return 0;
     }
 

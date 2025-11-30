@@ -2,14 +2,39 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include <cstring> // for strcmp
+#include <cstdio>  // for sprintf
 
 using namespace std;
 
-int main() {
-    ifstream fin("input.txt");
-    ofstream fout("output.txt");
+int main(int argc, char* argv[]) {
+    char input_path[256] = "../../testcase/1.in";
+    char output_path[256] = "../../testcase/1.out";
 
-    if (!fin.is_open() || !fout.is_open()) return 1;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-test") == 0) {
+            if (i + 1 < argc) {
+                sprintf(input_path, "../../testcase/%s.in", argv[i+1]);
+                sprintf(output_path, "../../testcase/%s.out", argv[i+1]);
+                i++; 
+            } else {
+                cerr << "Error: -test option requires an argument." << endl;
+                return 1;
+            }
+        }
+    }
+
+    ifstream fin(input_path);
+    ofstream fout(output_path);
+
+    if (!fin.is_open()) {
+        cerr << "Error: Cannot open input file: " << input_path << endl;
+        return 1;
+    }
+    if (!fout.is_open()) {
+        cerr << "Error: Cannot open output file: " << output_path << endl;
+        return 1;
+    }
 
     int N;
     if (!(fin >> N)) return 0;

@@ -1,50 +1,70 @@
 
-The three files `dfs.cpp`, `dp.cpp`, and `sa.cpp` correspond to solutions implemented using the **DFS algorithm**, **DP algorithm**, and **Simulated Annealing algorithm**, respectively. `check.cpp` is a correctness verification file; it checks whether the output in `output.txt` is valid, but it cannot determine if a feasible solution exists when none is found.
+# Project 5: Three Partition - Code & Algorithms
+
+## Project Overview
+
+This project implements **3 different types of algorithms** to solve the **3-Partition Problem**. The goal is to determine if a set of $N$ integers can be partitioned into three subsets with equal sums.
+
+### Files Description
+* **`dfs.cpp`**: **Depth First Search** (Exact). Uses strong pruning strategies. Suitable for small $N$ ($N \le 60$) or specific hard cases.
+* **`dp.cpp`**: **Dynamic Programming** (Exact). Runs in pseudo-polynomial time. Efficient for large $N$ but small numeric sums.
+* **`sa.cpp`**: **Simulated Annealing** (Heuristic). A randomized algorithm with incremental computation and restart strategy. Best for large-scale data ($N=1000$) and high-dimensional variants (Bonus).
+
+
 
 ## Input/Output Format
 
-We use File I/O: the program reads from `input.txt` and writes to `output.txt`.
+The solvers support **File I/O**.
 
-The format of `input.txt` is as follows:
-```
+### Input Format (`input.txt` or `*.in`)
+```text
 5
 1 2 3 4 5
-```
-The first line is the total count of numbers, and the second line contains the specific numbers.
+````
 
-`output.txt` is the output file, which has two possible formats:
+  * Line 1: The total count of numbers $N$.
+  * Line 2: The $N$ specific integers.
 
-```
-no
-```
+### Output Format (`output.txt` or `*.out`)
 
-Or:
+**Case 1: Solution Found**
 
-```
+```text
 yes
 1 4
 2 3
 5
-````
+```
 
-**Note:** If the output is `yes`, it means a feasible solution has been found. If the output is `no`:
-* For **DFS** and **DP** implementations, it means **no solution exists**.
-* For the **Simulated Annealing** implementation, it means **no solution exists** OR **no solution was found within the time limit** (it does not necessarily imply the problem is unsolvable).
+  * Line 1: `yes`.
+  * Lines 2-4: The numbers belonging to the three subsets (order does not matter).
 
-## Compilation and Execution Guide 
+**Case 2: No Solution**
 
-### Step 1: Compile all files
+```text
+no
+```
 
-Please run the following commands in your terminal/command line:
+  * For **DFS/DP**: It strictly means no solution exists.
+  * For **SA**: It means no solution was found within the time limit (though one might exist).
+
+-----
+
+## 4\. Compilation & Execution
+
+We use standard `g++`. Please ensure you have a C++ compiler installed.
+
+### Step 1: Compile
+
+Run the following commands in your terminal:
 
 **Windows:**
 
-```bash
+```powershell
 g++ dfs.cpp -o dfs.exe -O2
 g++ dp.cpp -o dp.exe -O2
 g++ sa.cpp -o sa.exe -O2
-g++ check.cpp -o check.exe
-````
+```
 
 **Mac / Linux:**
 
@@ -52,46 +72,36 @@ g++ check.cpp -o check.exe
 g++ dfs.cpp -o dfs -O2
 g++ dp.cpp -o dp -O2
 g++ sa.cpp -o sa -O2
-g++ check.cpp -o check
 ```
 
-*(Note: The `-O2` flag is used to enable optimization)*
+*(Note: `-O2` optimization is highly recommended)*
 
-### Step 2: Execution Flow
+### Step 2: Execution Modes
 
-1.  **Generate Data**
-    Manually create small test cases or use a program to generate large test cases in `input.txt`.
+#### Default
 
-2.  **Run Solver (Choose one)**:
-    The program will automatically read `input.txt` and generate `output.txt`.
+Reads from `/testcase/1.in` and writes to `/testcase/1.out`.
 
-<!-- end list -->
+Run the solver
 
-```bash
-./dfs      # Run DFS
+    
+    ./sa      # (or ./dfs, ./dp)
+    
 
-# OR
+#### Testcase (`-test`)
 
-./dp       # Run DP
+Reads from a specific test case file and writes to the corresponding output file.
+**Note:** The code assumes test cases are located in `../../testcase/`.
 
-# OR
+  * **Syntax**: `./solver -test <name>`
+  * **Example**: To run test case `1`:
+    ```bash
+    ./sa -test 1
+    ```
+      * **Input Path**: `../../testcase/1.in`
+      * **Output Path**: `../../testcase/1.out`
 
-./sa       # Run Simulated Annealing
-```
 
-3.  **Verify Results**:
-    The validator will check `input.txt` and `output.txt` to determine correctness.
-    **Note:** If the output is `no`, the checker cannot judge whether the result is theoretically correct, as the original problem might have a solution that was simply not calculated within the limited time.
 
-<!-- end list -->
-
-```bash
-./check
-```
-
-  * If it outputs `Correct`, the result is valid.
-  * If it outputs `Wrong`, please check the content of `output.txt`.
-  
-**NOTE**:check.exe is just a simple program to check the correctness, for further test, refer to the test directory. 
 
 <!-- end list -->

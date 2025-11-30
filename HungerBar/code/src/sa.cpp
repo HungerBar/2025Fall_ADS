@@ -3,6 +3,9 @@
 #include <cmath>
 #include <ctime>
 #include <fstream>
+#include <algorithm> 
+#include <cstring> // for strcmp
+#include <cstdio>  // for sprintf
 
 using namespace std;
 
@@ -27,7 +30,10 @@ long long get_diff() {
 }
 
 void sa() {
+    // 重置桶的状态
     for (int i = 0; i < K; i++) bucket_sum[i] = 0;
+
+    // 随机初始化
     for (int i = 0; i < N; i++) {
         belong_to[i] = rand() % K;
         bucket_sum[belong_to[i]] += numbers[i];
@@ -48,6 +54,7 @@ void sa() {
         int op = rand() % 2; 
 
         if (op == 0) { 
+            // 移动操作
             int idx = rand() % N;
             int old_b = belong_to[idx];
             int new_b = rand() % K;
@@ -70,6 +77,7 @@ void sa() {
                 bucket_sum[new_b] -= numbers[idx];
             }
         } else {
+            // 交换操作
             int i1 = rand() % N;
             int i2 = rand() % N;
             if (belong_to[i1] == belong_to[i2]) continue;
@@ -99,13 +107,39 @@ void sa() {
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     srand(time(NULL));
 
-    ifstream fin("input.txt");
-    ofstream fout("output.txt");
+    // 默认路径
+    char input_path[256] = "../../testcase/1.in";
+    char output_path[256] = "../../testcase/1.out";
 
-    if (!fin.is_open() || !fout.is_open()) return 1;
+    // 解析命令行参数
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-test") == 0) {
+            if (i + 1 < argc) {
+                // 根据参考路径修改：../../testcase/x.in
+                sprintf(input_path, "../../testcase/%s.in", argv[i+1]);
+                sprintf(output_path, "../../testcase/%s.out", argv[i+1]);
+                i++; // 跳过参数值
+            } else {
+                cerr << "Error: -test option requires an argument." << endl;
+                return 1;
+            }
+        }
+    }
+
+    ifstream fin(input_path);
+    ofstream fout(output_path);
+
+    if (!fin.is_open()) {
+        cerr << "Error: Cannot open input file: " << input_path << endl;
+        return 1;
+    }
+    if (!fout.is_open()) {
+        cerr << "Error: Cannot open output file: " << output_path << endl;
+        return 1;
+    }
 
     if (!(fin >> N)) return 0;
 
@@ -133,6 +167,7 @@ int main() {
     // 卡时技巧：只要时间不到0.9秒就一直重跑
     while ((double)clock() / CLOCKS_PER_SEC < 0.9) {
         sa();
+        
         if (found) {
             fout << "yes" << endl;
             for (int b = 0; b < K; b++) {
