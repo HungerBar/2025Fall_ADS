@@ -1,0 +1,46 @@
+n,./dfs_time,./dfs_check
+10,0.005831003189086914,"Correct(Output no, maybe wrong)"
+10,0.0047149658203125,"Correct(Output no, maybe wrong)"
+10,0.004562854766845703,"Correct(Output no, maybe wrong)"
+10,0.004974842071533203,"Correct(Output no, maybe wrong)"
+10,0.004348039627075195,"Correct(Output no, maybe wrong)"
+15,0.004439115524291992,"Correct(Output no, maybe wrong)"
+15,0.004076957702636719,"Correct(Output no, maybe wrong)"
+15,0.005133867263793945,"Correct(Output no, maybe wrong)"
+15,0.004536151885986328,"Correct(Output no, maybe wrong)"
+15,0.0044078826904296875,"Correct(Output no, maybe wrong)"
+20,0.003982067108154297,"Correct(Output no, maybe wrong)"
+20,0.004901885986328125,Correct
+20,0.03766298294067383,"Correct(Output no, maybe wrong)"
+20,0.004043102264404297,"Correct(Output no, maybe wrong)"
+20,0.0037240982055664062,"Correct(Output no, maybe wrong)"
+25,0.03154468536376953,Correct
+25,0.004225015640258789,"Correct(Output no, maybe wrong)"
+25,0.0035347938537597656,"Correct(Output no, maybe wrong)"
+25,0.03184914588928223,Correct
+25,0.03033590316772461,Correct
+30,0.0038220882415771484,"Correct(Output no, maybe wrong)"
+30,0.12259602546691895,Correct
+30,0.003793954849243164,"Correct(Output no, maybe wrong)"
+30,0.0036122798919677734,"Correct(Output no, maybe wrong)"
+30,0.004136800765991211,Correct
+35,0.700329065322876,Correct
+35,0.0037801265716552734,"Correct(Output no, maybe wrong)"
+35,0.0035631656646728516,"Correct(Output no, maybe wrong)"
+35,9.668674945831299,Correct
+35,0.004259824752807617,"Correct(Output no, maybe wrong)"
+40,0.8641648292541504,Correct
+40,0.004137992858886719,"Correct(Output no, maybe wrong)"
+40,1.2229070663452148,Correct
+40,0.40215110778808594,Correct
+40,0.004040241241455078,"Correct(Output no, maybe wrong)"
+45,0.0039789676666259766,"Correct(Output no, maybe wrong)"
+45,0.0043048858642578125,"Correct(Output no, maybe wrong)"
+45,0.003821134567260742,"Correct(Output no, maybe wrong)"
+45, Timeout,
+45, Timeout,
+50,0.006762981414794922,Correct
+50, Timeout,
+50,0.0055468082427978516,"Correct(Output no, maybe wrong)"
+50,0.0059299468994140625,"Correct(Output no, maybe wrong)"
+50,92.86084222793579,Correct
