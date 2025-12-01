@@ -54,7 +54,6 @@ def generate_base_groups():
             # use check
             write_input(arr, "input.txt")
             if run_dp_then_check_correct():
-                # 保存基础组文件
                 filename = os.path.join(OUTPUT_DIR, f"base_{i+1}.txt")
                 write_input(arr, filename)
                 base_groups.append(arr)
