@@ -5,7 +5,7 @@ from copy import deepcopy
 
 N_SMALL = 100  # base set elements quantity
 NUM_BASE_GROUPS = 20  # base set quantity
-MIN_SELECTED_GROUPS = 10  # large array 最少选多少组
+MIN_SELECTED_GROUPS = 10  # min base quantity 
 NUM_LARGE_INPUTS = 10000
 
 SMALL_MAX = 300  # base set max element
