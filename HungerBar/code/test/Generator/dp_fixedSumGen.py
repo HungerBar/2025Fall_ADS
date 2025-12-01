@@ -3,9 +3,8 @@ import os
 import random
 
 
-# =====================================================
-#              Test Data Generation
-# =====================================================
+# generate the fixed sum, variable n testcases
+# the same generate logic as dp_fixednGen.py
 def gen_test_data_fixed_sum(n, total_sum, min_val=1, max_val=None, file="input.txt"):
     if max_val is None:
         max_val = total_sum - n + 1
@@ -43,9 +42,6 @@ def gen_test_data_fixed_sum(n, total_sum, min_val=1, max_val=None, file="input.t
     return arr
 
 
-# =====================================================
-#                         Main
-# =====================================================
 def main():
     parser = argparse.ArgumentParser(description="Generate DP testcases only")
     parser.add_argument(
